@@ -2,6 +2,18 @@ package main
 
 import "fmt"
 
+func foo() (int, string) {
+	return 10, "wujie"
+}
+
+const (
+	a1 = iota
+	a2
+	a3
+	_
+	a4
+)
+
 func main() {
 	var name string
 	var age int
@@ -17,4 +29,12 @@ func main() {
 
 	var name2, age2 = "virus", 19
 	fmt.Println(name2, age2)
+
+	x, _ := foo()
+	_, y := foo()
+
+	fmt.Println("x=", x)
+	fmt.Println("y=", y)
+
+	fmt.Println(a1, a2, a3, a4)
 }
