@@ -6,6 +6,9 @@ func foo() (int, string) {
 	return 10, "wujie"
 }
 
+// 全局变量无法使用此方式进行简写
+//var name := "wujie"
+
 const (
 	a1 = iota
 	a2

@@ -11,8 +11,8 @@ func main() {
 	// 这是单行的注释
 
 	/*
-	多行注释，块注释
-	 */
+		多行注释，块注释
+	*/
 
 	fmt.Println("hello world")
 	// 调用city.go 的Add方法，因为他们属于同一个包，包名相同，直接去调用即可
@@ -20,4 +20,8 @@ func main() {
 
 	// 调用api/baidu.go 的Baidu() 方法 ，只要包.方法名即可
 	api.Baidu()
+
+	fmt.Printf("无解的%s", "游戏")
+	fmt.Printf("无解的%.2f", 2221.2121212)
+	fmt.Printf("包你100%%满意")
 }
