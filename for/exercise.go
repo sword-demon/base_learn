@@ -4,8 +4,9 @@ import "fmt"
 
 func main() {
 	//guess()
-	oneToHundred()
-	outerSeven()
+	//oneToHundred()
+	//outerSeven()
+	tag()
 }
 
 /**
@@ -64,5 +65,17 @@ func sum100() {
 func reverseNum() {
 	for i := 10; i > 0; i-- {
 		fmt.Println(i)
+	}
+}
+
+func tag() {
+f1:
+	for i := 0; i < 3; i++ {
+		for j := 1; j < 5; j++ {
+			if j == 3 {
+				continue f1
+			}
+			fmt.Println(i, j)
+		}
 	}
 }
