@@ -1,12 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+	"strconv"
+)
 
 func main() {
 	//guess()
 	//oneToHundred()
 	//outerSeven()
-	tag()
+	//tag()
+
+	var v1 int16 = 129
+	v2 := int8(v1)
+
+	fmt.Println(v2)
+
+	v3 := 19
+
+	result := strconv.Itoa(v3) // 只能转换int类型 int8/16 都是不允许的
+	fmt.Println(result, reflect.TypeOf(result)) // 整型转换为字符串
+
+	v4 := "666"
+	// 内置了错误处理机制
+	str4, err := strconv.Atoi(v4) // 第一个值是转换之后的结果，第二个结果就是是否转换成功
+	if err == nil {
+		fmt.Println("转换成功")
+	} else {
+		fmt.Println("转换失败")
+	}
+	fmt.Println(str4, reflect.TypeOf(str4))
 }
 
 /**
