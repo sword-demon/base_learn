@@ -19,7 +19,7 @@ func main() {
 
 	v3 := 19
 
-	result := strconv.Itoa(v3) // 只能转换int类型 int8/16 都是不允许的
+	result := strconv.Itoa(v3)                  // 只能转换int类型 int8/16 都是不允许的
 	fmt.Println(result, reflect.TypeOf(result)) // 整型转换为字符串
 
 	v4 := "666"
@@ -31,6 +31,9 @@ func main() {
 		fmt.Println("转换失败")
 	}
 	fmt.Println(str4, reflect.TypeOf(str4))
+
+	r1 := strconv.FormatInt(int64(v3), 2)	// 10进制转换成二进制，后面填几就转换成几进制
+	fmt.Println(r1, reflect.TypeOf(r1))
 }
 
 /**
