@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -62,5 +63,15 @@ func main() {
 	// 长度的处理
 	runeLength := utf8.RuneCountInString(username)
 	fmt.Println(runeLength) // 2
+
+	// 判断字符串是否是以无开头
+	result := strings.HasPrefix(username, "无")
+	fmt.Println(result)
+
+	var builder strings.Builder
+	builder.WriteString("哈哈哈哈")
+	builder.WriteString("去你的吧")
+	value := builder.String()
+	fmt.Println(value)
 
 }
