@@ -33,4 +33,15 @@ func main() {
 		fmt.Println(item)
 	}
 
+	// 数组的嵌套
+	//var nestData [3]int
+
+	// [[0,0,0], [0,0,0]]
+	var nestData [2][3]int // 二维数组
+	fmt.Println(nestData)
+
+	nestData[0] = [3]int{11, 22, 33}
+	fmt.Println(nestData) // [[11 22 33] [0 0 0]]
+
+
 }
