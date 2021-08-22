@@ -1,4 +1,4 @@
-package main
+package for
 
 import (
 	"fmt"
@@ -32,7 +32,7 @@ func main() {
 	}
 	fmt.Println(str4, reflect.TypeOf(str4))
 
-	r1 := strconv.FormatInt(int64(v3), 2)	// 10进制转换成二进制，后面填几就转换成几进制
+	r1 := strconv.FormatInt(int64(v3), 2) // 10进制转换成二进制，后面填几就转换成几进制
 	fmt.Println(r1, reflect.TypeOf(r1))
 }
 
