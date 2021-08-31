@@ -1,7 +1,7 @@
 /*
  * @Author: wxvirus
  * @Date: 2021-08-26 23:59:51
- * @LastEditTime: 2021-08-27 23:34:10
+ * @LastEditTime: 2021-08-28 19:57:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /base_learn/map/main.go
@@ -27,4 +27,11 @@ func main() {
 	v7 := make(map[string][2]map[string]string) // 键是字符串，值是一个数组，数组里每个元素都是一个map
 	v7["n1"] = [2]map[string]string{{"name": "wujie", "age": "18"}, {"name": "wujie1", "age": "19"}}
 	fmt.Println(v7)
+
+	data1 := map[string]string{"n1": "wujie", "n2": "dwqdqw"}
+
+	// 循环
+	for key, value := range data1 {
+		fmt.Println(key, value)
+	}
 }
