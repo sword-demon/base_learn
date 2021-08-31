@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-06-20 21:58:33
+ * @LastEditTime: 2021-09-01 00:39:34
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /base_learn/变量/main.go
+ */
 package main
 
 import (
@@ -21,7 +29,7 @@ func main() {
 	fmt.Println(name, &name)
 	fmt.Println(nickname, &nickname)
 
-	name = "无佩奇"
+	name = "无解的游戏"
 
 	fmt.Println(name, &name)
 	fmt.Println(nickname, &nickname)

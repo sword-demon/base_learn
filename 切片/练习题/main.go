@@ -1,7 +1,7 @@
 /*
  * @Author: wxvirus
  * @Date: 2021-08-25 22:10:25
- * @LastEditTime: 2021-09-01 00:29:12
+ * @LastEditTime: 2021-09-01 00:33:05
  * @LastEditors: Please set LastEditors
  * @Description: 切片练习题
  * @FilePath: /base_learn/切片/练习题/main.go
@@ -55,5 +55,10 @@ func Add(s []int, index int, value int) []int {
 
 func Delete(s []int, index int) []int {
 	// todo 切片的删除
+	// s:=[]int{11,22,33,44} index = 2
+	// [11, 22]
+	// [44]
+	// [11, 22, 44]
+	// s => [11, 22, 44, 44] 被覆盖
 	return append(s[:index], s[index+1:]...)
 }
