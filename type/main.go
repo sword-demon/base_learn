@@ -1,5 +1,5 @@
 /*
- * @Author: your name
+ * @Author: wxvirus
  * @Date: 2021-09-01 20:45:11
  * @LastEditTime: 2021-09-01 21:14:26
  * @LastEditors: Please set LastEditors
@@ -8,8 +8,10 @@
  */
 package main
 
-import "fmt"
-
 func main() {
-	fmt.Println("type关键字学习")
+	//fmt.Println("type关键字学习")
+	// 抽象出一个基于http的一个web服务
+	server := NewHttpServer("test-server")
+	server.Route("/", SignUp)
+	server.Start(":8080")
 }
