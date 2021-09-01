@@ -1,7 +1,7 @@
 /*
  * @Author: wxvirus
  * @Date: 2021-08-25 22:10:25
- * @LastEditTime: 2021-09-01 00:33:05
+ * @LastEditTime: 2021-09-01 19:05:31
  * @LastEditors: Please set LastEditors
  * @Description: 切片练习题
  * @FilePath: /base_learn/切片/练习题/main.go
@@ -35,6 +35,11 @@ func main() {
 	fmt.Println(v6, len(v6), cap(v6))
 	fmt.Println(v7, len(v7), cap(v7))
 
+	fmt.Println(fb(1))
+	fmt.Println(fb(2))
+	fmt.Println(fb(3))
+	fmt.Println(fb(4))
+
 }
 
 // 切片扩容，不再共享内存地址
@@ -46,6 +51,7 @@ func Add(s []int, index int, value int) []int {
 	// 将需要加入的值，追加到切片
 	// 将原切片指定索引后面的值追加到切片
 	// 最后形成一个新的切片返回，就实现了加的操作
+	// todo : 需要对传入的index，和value值进行校验
 	result := make([]int, 0, len(s)+1)
 	result = append(result, s[:index]...)
 	result = append(result, value)
@@ -61,4 +67,29 @@ func Delete(s []int, index int) []int {
 	// [11, 22, 44]
 	// s => [11, 22, 44, 44] 被覆盖
 	return append(s[:index], s[index+1:]...)
+}
+
+// 递归实现斐波那契数列
+func fb(x int) int {
+	if x <= 0 {
+		return 0
+	}
+	if x == 1 || x == 2 {
+		return x
+	}
+	return fb(x-1) + fb(x-2)
+}
+
+// 优化斐波那契数列
+func fb1(x int) int {
+	if x <= 0 {
+		return 0
+	}
+	a, b := 1, 1
+	result := 0
+	for i := 3; i <= x; i++ {
+		result = a + b
+		a, b = b, result
+	}
+	return result
 }
