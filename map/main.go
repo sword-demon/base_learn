@@ -34,4 +34,21 @@ func main() {
 	for key, value := range data1 {
 		fmt.Println(key, value)
 	}
+
+	Recurring()
+}
+
+// Recurring 切片的元素去重
+func Recurring() {
+	s1 := []string{"abc", "def", "abc", "okok"}
+
+	m := make(map[string]struct{})
+	for _, i := range s1 {
+		m[i] = struct{}{}
+	}
+	s2 := make([]string, 0)
+	for k := range m {
+		s2 = append(s2, k)
+	}
+	fmt.Println(s1, s2)
 }
