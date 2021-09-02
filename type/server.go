@@ -17,32 +17,24 @@ import (
 // 尽量使用接口，以实现面向接口编程
 // 接口是一组行为的抽象 一般接口普遍定义为大写，实现一般定义为小写
 type Server interface {
-	// Route 设定一个路由
+	// Routable 优化手段 设定一个路由
 	// 需要加上 method POST PUT GET DELETE
-	Route(method, string, pattern string, handleFunc func(c *Context))
+	//Route(method string, pattern string,
+	//	handleFunc func(c *Context))
+	Routable
 	// Start 启动我们的服务器
 	Start(address string) error
 }
 
 // sdkHttpServer 基于http库实现的
 type sdkHttpServer struct {
-	Name string
-	handler *HandlerBasedOnMap
+	Name    string
+	handler Handler
 }
 
 // Route 做注册路由
 func (s *sdkHttpServer) Route(method string, pattern string, handleFunc func(c *Context)) {
-
-	//http.HandleFunc(pattern, func(w http.ResponseWriter, r *http.Request) {
-	//	//ctx := &Context{
-	//	//	W: w,
-	//	//	R: r,
-	//	//}
-	//	ctx := NewContext(w, r)
-	//	handleFunc(ctx)
-	//})
-	key := s.handler.key(method, pattern)
-	s.handler.handlers[key] = handleFunc
+	s.handler.Route(method, pattern, handleFunc)
 
 	// 需要解决重复注册的问题
 }
@@ -52,9 +44,10 @@ func (s *sdkHttpServer) Start(address string) error {
 	return http.ListenAndServe(address, nil)
 }
 
-func NewHttpServer(name string) *sdkHttpServer {
+func NewHttpServer(name string) Server {
 	return &sdkHttpServer{
-		Name: name,
+		Name:    name,
+		handler: NewHandlerBasedOnMap(),
 	}
 }
 
@@ -73,6 +66,7 @@ func RegisterFactory(f Factory) {
 func NewServerA() Server {
 	return factory()
 }
+
 type Node struct {
 	// 自引用只能使用指针，指针的大小是固定的
 	left  *Node
