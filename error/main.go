@@ -48,7 +48,7 @@ import (
 // 	return authenticate(r.User)
 // }
 
-// 读取内容的行数
+// CountLines 读取内容的行数
 func CountLines(r io.Reader) (int, error) {
 	var (
 		br    = bufio.NewReader(r)
@@ -71,7 +71,7 @@ func CountLines(r io.Reader) (int, error) {
 	return lines, nil
 }
 
-// 改进
+// CountLinesSuper 改进
 func CountLinesSuper(r io.Reader) (int, error) {
 	sc := bufio.NewScanner(r)
 	lines := 0
@@ -85,6 +85,20 @@ func CountLinesSuper(r io.Reader) (int, error) {
 	return lines, sc.Err()
 }
 
+func testPanic() {
+	// 延迟执行
+	defer func() {
+		// data 是下面的panic传递的东西 => Boom
+		if data := recover(); data != nil {
+			fmt.Printf("hello, panic: %v\n", data)
+		}
+		fmt.Println("恢复之后从这里继续执行")
+	}()
+
+	panic("Boom")
+	fmt.Println("这里肯定不会执行")
+}
+
 func main() {
 	path := "./"
 	f, err := os.Open(path)
@@ -94,4 +108,6 @@ func main() {
 	fmt.Println(f)
 
 	// do stuff
+
+	testPanic()
 }
