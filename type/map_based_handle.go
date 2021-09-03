@@ -12,7 +12,8 @@ type Routable interface {
 
 // Handler 定义接口
 type Handler interface {
-	http.Handler // 负责http请求
+	// ServeHTTP 	上一个代码: http.Handler // 负责http请求
+	ServeHTTP(c *Context)
 	Routable // 组合一个 路由
 }
 
@@ -29,14 +30,14 @@ func (h *HandlerBasedOnMap) Route(method string, pattern string, handleFunc func
 	// 需要解决重复注册的问题
 }
 
-func (h *HandlerBasedOnMap) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
+func (h *HandlerBasedOnMap) ServeHTTP(c *Context) {
 
-	key := h.key(request.Method, request.URL.Path)
+	key := h.key(c.R.Method, c.R.URL.Path)
 	if handler, ok := h.handlers[key]; ok {
-		handler(NewContext(writer, request))
+		handler(c)
 	} else {
-		writer.WriteHeader(http.StatusNotFound)
-		writer.Write([]byte("Not found"))
+		c.W.WriteHeader(http.StatusNotFound)
+		c.W.Write([]byte("Not found"))
 	}
 }
 
