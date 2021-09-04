@@ -82,12 +82,6 @@ func NewServerA() Server {
 	return factory()
 }
 
-type Node struct {
-	// 自引用只能使用指针，指针的大小是固定的
-	left  *Node
-	right *Node
-}
-
 // User 方法接收器，给结构体加方法
 type User struct {
 	Name string

@@ -24,6 +24,8 @@ type Filter func(c *Context)
 //	OnReturn()
 //}
 
+type handlerFunc func(c *Context)
+
 type FilterBuilder func(next Filter) Filter
 
 var _ FilterBuilder = MetricsFilterBuilder
