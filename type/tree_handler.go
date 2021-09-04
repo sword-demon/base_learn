@@ -19,7 +19,8 @@ func (h *HandlerBasedOnTree) ServeHTTP(c *Context) {
 
 }
 
-func (h *HandlerBasedOnTree) Route(method string, pattern string, handleFunc func(ctx *Context)) {
+func (h *HandlerBasedOnTree) Route(method string, pattern string,
+	handleFunc handlerFunc) {
 	// 切割 /
 	// user/friends
 	// [user, friends]
@@ -29,13 +30,14 @@ func (h *HandlerBasedOnTree) Route(method string, pattern string, handleFunc fun
 	paths := strings.Split(pattern, "/")
 
 	cur := h.root
-	for _, path := range paths {
+	for index, path := range paths {
 		mathChild, ok := h.findMatchChild(cur, path)
 		if ok {
 			cur = mathChild
 		} else {
 			// 没找着, 创建
-			h.createSubTree()
+			h.createSubTree(cur, paths[index:], handleFunc)
+			return
 		}
 	}
 }
@@ -53,13 +55,21 @@ func (h *HandlerBasedOnTree) Route(method string, pattern string, handleFunc fun
 func (h *HandlerBasedOnTree) findMatchChild(root *node, path string) (*node, bool) {
 	// 遍历所有的children
 	for _, child := range root.children {
-		if child.path == path {
+		if child.path == path || child.path == "*" {
 			return child, true
 		}
 	}
 	return nil, false
 }
 
-func (h *HandlerBasedOnTree) createSubTree() {
-
+// createSubTree paths 可能是 friends/xiaoming/address
+func (h *HandlerBasedOnTree) createSubTree(root *node, paths []string,
+	handlerFn handlerFunc) {
+	cur := root
+	for _, path := range paths {
+		nn := newNode(path)
+		cur.children = append(cur.children, nn)
+		cur = nn
+	}
+	cur.handler = handlerFn
 }

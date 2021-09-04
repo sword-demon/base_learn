@@ -7,7 +7,7 @@ import (
 // Routable 单独的接口
 type Routable interface {
 	// Route 组合语法
-	Route(method string, pattern string, handleFunc func(ctx *Context))
+	Route(method string, pattern string, handleFunc handlerFunc)
 }
 
 // Handler 定义接口
@@ -22,7 +22,8 @@ type HandlerBasedOnMap struct {
 	handlers map[string]func(ctx *Context)
 }
 
-func (h *HandlerBasedOnMap) Route(method string, pattern string, handleFunc func(c *Context)) {
+func (h *HandlerBasedOnMap) Route(method string, pattern string,
+	handleFunc handlerFunc) {
 
 	key := h.key(method, pattern)
 	h.handlers[key] = handleFunc
