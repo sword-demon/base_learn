@@ -55,6 +55,7 @@ func (h *HandlerBasedOnTree) Route(method string, pattern string,
 func (h *HandlerBasedOnTree) findMatchChild(root *node, path string) (*node, bool) {
 	// 遍历所有的children
 	for _, child := range root.children {
+		// 校验 * ，如果存在，必须在最后一个，且前面必须是/
 		if child.path == path || child.path == "*" {
 			return child, true
 		}
