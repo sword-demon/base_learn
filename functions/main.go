@@ -33,10 +33,26 @@ func WriteGreeting(name string, w Writer) error {
 	return nil
 }
 
+func add100(arg int) (int, bool) {
+	return arg + 100, true
+}
+
+func proxy(data int, exec func(int) (int, bool)) int {
+	data, flag := exec(data)
+	if flag {
+		return data
+	} else {
+		return 9999
+	}
+}
+
 func main() {
 	var sb strings.Builder
 	err := WriteGreeting("Jon", &sb)
 	if err != nil {
 		return
 	}
+
+	result := proxy(123, add100)
+	fmt.Println(result)
 }
