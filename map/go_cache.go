@@ -52,16 +52,33 @@ func HttpGetUser(name string) user {
 	return u
 }
 
+// 查询方法
+
+func queryUser() {
+	for i := 0; i < 10; i++ {
+		userName := fmt.Sprintf("user_name_%d", i)
+		GetUser(userName)
+	}
+}
+
 func main() {
-	c := cache.New(30*time.Second, 5*time.Second)
+	//c := cache.New(30*time.Second, 5*time.Second)
+	//
+	//c.Set("k1", "v1", 31*time.Second)
+	//
+	//res, ok := c.Get("k1")
+	//fmt.Println(res, ok)
+	//
+	//time.Sleep(time.Second * 32)
+	//
+	//res, ok = c.Get("k1")
+	//fmt.Println(res, ok)
 
-	c.Set("k1", "v1", 31*time.Second)
-
-	res, ok := c.Get("k1")
-	fmt.Println(res, ok)
-
-	time.Sleep(time.Second * 32)
-
-	res, ok = c.Get("k1")
-	fmt.Println(res, ok)
+	log.Printf("第1次queryUser")
+	queryUser()
+	log.Printf("第2次queryUser")
+	queryUser()
+	time.Sleep(61 * time.Second)
+	log.Printf("第3次queryUser")
+	queryUser()
 }
