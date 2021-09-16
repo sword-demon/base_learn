@@ -41,7 +41,7 @@ func fb(i int) int {
 
 }
 
-func f1() (res int) {
+func f2() (res int) {
 	defer func() {
 		res++
 	}()
@@ -86,5 +86,5 @@ func main() {
 	result := f4()
 	fmt.Println(result)
 
-	fmt.Println(f1())
+	fmt.Println(f2())
 }
