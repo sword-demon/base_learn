@@ -38,6 +38,6 @@ type MyBiz struct {
 // Init 让这个初始化方法只执行一次
 func (m *MyBiz) Init() {
 	m.once.Do(func() {
-
+		// do something
 	})
 }
