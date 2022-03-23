@@ -40,4 +40,10 @@ func main() {
 
 	root.postOrder()
 	fmt.Println()
+
+	nodeCount := 0
+	root.TraverseFunc(func(node *tree.Node) {
+		nodeCount++
+	})
+	fmt.Println("Node Count: ", nodeCount)
 }
